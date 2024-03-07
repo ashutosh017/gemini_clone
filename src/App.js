@@ -1,96 +1,3 @@
-// import { useState } from "react";
-// import "./App.css";
-
-// function App() {
-//   const [value, setValue] = useState("");
-//   const [chatHistory, setChatHistory] = useState([]);
-
-//   const getResponse = async () => {
-//     if (!value) {
-//       return;
-//     }
-//     try {
-//       const input = value;
-//       setValue("");
-//       const options = {
-//         method: "POST",
-//         body: JSON.stringify({
-//           history: chatHistory,
-//           message: input,
-//         }),
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       };
-//       const response = await fetch("http://localhost:8000/gemini", options);
-//       const data = await response.text();
-//       console.log("I am coming from getResponse called from app.js", data);
-//       setChatHistory((oldHistory) => [
-//         ...oldHistory,
-//         {
-//           role: "user",
-//           parts: input,
-//         },
-//         {
-//           role: "model",
-//           parts: data,
-//         },
-//       ]);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-//   const handleSend = (e) => {
-//     if (e.key === "Enter") {
-//       getResponse();
-//     }
-//   };
-//   const clear = () => {
-//     setChatHistory([]);
-//     setValue("");
-//   };
-//   return (
-//     <div className="bg-black h-screen">
-//       <div className="p-4 bg-gray-700">
-//         <input
-//           className="border border-r-0 outline-none px-2 "
-//           type="text"
-//           placeholder="search here..."
-//           onChange={(e) => setValue(e.target.value)}
-//           value={value}
-//           onKeyDown={handleSend}
-//         />
-//         <button
-//           disabled={value === ""}
-//           className="border  bg-black hover:bg-transparent  px-2"
-//           onClick={getResponse}
-//         >
-//           Submit
-//         </button>
-
-//         <button
-//           onClick={clear}
-//           className="border ml-4 bg-black hover:bg-transparent  px-2"
-//         >
-//           Clear
-//         </button>
-//       </div>
-
-//       <div className="p-4">
-//         {chatHistory.map((chatItem, i) => (
-//           <div key={i}>
-//             <p className="whitespace-pre-line">
-//               {chatItem.role}: {chatItem.parts}
-//             </p>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
-
 import { useState } from "react";
 import "./App.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -122,7 +29,7 @@ function App() {
           "Content-Type": "application/json",
         },
       };
-      const response = await fetch("http://localhost:8000/gemini", options);
+      const response = await fetch("/gemini", options);
       const data = await response.text();
 
       setChatHistory((oldHistory) => [
